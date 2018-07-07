@@ -45,6 +45,7 @@ public class MyTeamActivity extends CustomActivity implements CustomActivity.Res
         setContentView(R.layout.activity_listing);
         setResponseListener(this);
         isGoNext = getIntent().getBooleanExtra(AppConstants.EXTRA, false);
+        isNextLevel = getIntent().getBooleanExtra("isNext", false);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

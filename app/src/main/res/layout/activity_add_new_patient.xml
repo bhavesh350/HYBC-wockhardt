@@ -28,6 +28,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/edt_patient_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_bg_rounded"
@@ -94,6 +95,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/edt_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_bg_rounded"
@@ -158,6 +160,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/edt_height"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -209,6 +212,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/edt_abdo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -225,7 +229,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:background="@color/colorPrimaryDark">
+                android:background="@drawable/gradient_button_yellow">
 
                 <Button
                     android:id="@+id/btn_view_drafts"

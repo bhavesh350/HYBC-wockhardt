@@ -23,7 +23,10 @@ import java.util.List;
  * Created by Abhishek on 22-04-2017.
  */
 
-public class MyTeamAdapter extends RecyclerView.Adapter<MyTeamAdapter.MyViewHolder> {
+public class
+
+
+MyTeamAdapter extends RecyclerView.Adapter<MyTeamAdapter.MyViewHolder> {
 
     List<MyTeam.Data> data;
     private LayoutInflater inflater;

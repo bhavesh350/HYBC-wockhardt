@@ -40,6 +40,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static com.kybcwockhardt.application.AppConstants.BASE_URL;
+
 public class QuestionnaireActivity extends CustomActivity implements CustomActivity.ResponseCallback, RadioGroup.OnCheckedChangeListener, CheckBox.OnCheckedChangeListener {
 
     private Toolbar toolbar;
@@ -115,6 +117,9 @@ public class QuestionnaireActivity extends CustomActivity implements CustomActiv
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
+
+            postCall(getContext(), BASE_URL + "create-question", p, "Saving Questionnaire...", 1);
+            patientUpdatedData = new Patient();
         } else if (v.getId() == R.id.btn_signature) {
             openSignaturePanel();
         } else if (v.getId() == R.id.btn_view_drafts) {
@@ -131,7 +136,7 @@ public class QuestionnaireActivity extends CustomActivity implements CustomActiv
             case 3:
                 return "Some of the time,";
             case 4:
-                return "Most of the time";
+                return "Most of the time,";
             case 5:
                 return "Always,";
             default:

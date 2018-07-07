@@ -15,6 +15,7 @@ import com.kybcwockhardt.adapters.CampHistoryDetailsAdapter;
 import com.kybcwockhardt.adapters.CampHistoryRMAdapter;
 import com.kybcwockhardt.adapters.CampHistoryZSMAdapter;
 import com.kybcwockhardt.application.MyApp;
+import com.kybcwockhardt.application.SingleInstance;
 import com.kybcwockhardt.models.Doctor;
 import com.kybcwockhardt.models.MyTeam;
 
@@ -30,6 +31,7 @@ public class CampHistoryDetailsActivity extends CustomActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        currentData = SingleInstance.getInstance().getZsmHistoryData();
         setContentView(R.layout.activity_camp_history_details);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -37,6 +39,7 @@ public class CampHistoryDetailsActivity extends CustomActivity {
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setTitle(currentData.getName());
         setupUiElements();
+
     }
 
     private void setupUiElements() {

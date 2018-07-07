@@ -50,8 +50,8 @@ public class DraftsAdapter extends RecyclerView.Adapter<DraftsAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-//        String current = data.get(position).getName();
-        holder.txt_name.setText("Patient ");
+        Patient.Data d = data.get(position);
+        holder.txt_name.setText(d.getName());
 
     }
 
@@ -83,11 +83,17 @@ public class DraftsAdapter extends RecyclerView.Adapter<DraftsAdapter.MyViewHold
                         .setSingleChoiceItems(items, -1, null)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                dialog.dismiss();
+
                                 int selectedPosition = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                                data.remove(getLayoutPosition());
-                                notifyDataSetChanged();
-                                ((DraftsActivity) context).callApiPrescribed(data.get(getLayoutPosition()).getId(), items[selectedPosition]);
+                                try {
+                                    ((DraftsActivity) context).callApiPrescribed(data.get(getLayoutPosition()).getId(), items[selectedPosition]);
+                                    dialog.dismiss();
+                                    data.remove(getLayoutPosition());
+                                    notifyDataSetChanged();
+                                } catch (Exception e) {
+                                }
+
+
                                 // Do something useful withe the position of the selected radio button
                             }
                         })
@@ -98,13 +104,17 @@ public class DraftsAdapter extends RecyclerView.Adapter<DraftsAdapter.MyViewHold
                         .setSingleChoiceItems(items, -1, null)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                dialog.dismiss();
+
                                 int selectedPosition = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                                data.remove(getLayoutPosition());
-                                notifyDataSetChanged();
-                                MyApp.showMassage(context, "Data will be sent to server.");
                                 // Do something useful withe the position of the selected radio button
-                                ((DraftsActivity) context).callApiNotPrescribed(data.get(getLayoutPosition()).getId(), items[selectedPosition]);
+                                try {
+                                    ((DraftsActivity) context).callApiNotPrescribed(data.get(getLayoutPosition()).getId(), items[selectedPosition]);
+                                    dialog.dismiss();
+                                    data.remove(getLayoutPosition());
+                                    notifyDataSetChanged();
+                                } catch (Exception e) {
+                                }
+
                             }
                         })
                         .show();

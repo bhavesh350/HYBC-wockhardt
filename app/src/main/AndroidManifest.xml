@@ -18,6 +18,9 @@
             android:name=".MyDoctorsActivity"
             android:screenOrientation="sensorPortrait" />
         <activity
+            android:name=".CampHistoryRMDetailsActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
             android:name=".SplashActivity"
             android:screenOrientation="sensorPortrait"
             android:theme="@style/VisualTheme">
@@ -37,6 +40,9 @@
             android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".CampExecutionClickActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".CampHistoryNSMActivity"
             android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".AddNewPatientActivity"
@@ -89,6 +95,10 @@
             android:screenOrientation="sensorPortrait" />
 
         <activity
+            android:name=".GeneratePasswordActivity"
+            android:screenOrientation="sensorPortrait" />
+
+        <activity
             android:name=".AddDoctorActivity"
             android:screenOrientation="sensorPortrait" />
 
@@ -96,6 +106,14 @@
             android:name=".DraftsActivity"
             android:screenOrientation="sensorPortrait" />
 
+
+        <activity
+            android:name=".CampHistoryDetailsUsersActivity"
+            android:screenOrientation="sensorPortrait" />
+
+        <activity
+            android:name=".CampHistoryTMActivity"
+            android:screenOrientation="sensorPortrait" />
 
         <service android:name=".MyFirebaseInstanceIDService">
             <intent-filter>

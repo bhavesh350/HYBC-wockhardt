@@ -14,29 +14,15 @@ import com.kybcwockhardt.application.MyApp;
 
 public class ZsmSmMainActivity extends CustomActivity {
 
-    //    private Toolbar toolbar;
-    private RelativeLayout rl_camp_approval;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zsm_main);
-//        if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
-//            MyApp.setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true);
-//        }
-//        if (Build.VERSION.SDK_INT >= 19) {
-//            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-//        }
-//        if (Build.VERSION.SDK_INT >= 21) {
-//            MyApp.setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
-//            getWindow().setStatusBarColor(Color.TRANSPARENT);
-//        }
+
         setupUiElements();
     }
 
     private void setupUiElements() {
-
-        rl_camp_approval = findViewById(R.id.rl_camp_approval);
 
         setClick(R.id.btn_notification);
         setClick(R.id.btn_my_team);
@@ -49,15 +35,18 @@ public class ZsmSmMainActivity extends CustomActivity {
     public void onClick(View v) {
         super.onClick(v);
         if (v.getId() == R.id.btn_my_team) {
-//            startActivity(new Intent(getContext(), MyTeamActivity.class).putExtra(AppConstants.EXTRA, false));
+            startActivity(new Intent(getContext(), MyTeamActivity.class).putExtra(AppConstants.EXTRA, false));
         } else if (v.getId() == R.id.btn_camp_history) {
+            if (MyApp.getApplication().readUser().getData().getDesignation().equals("NSM")) {
+                startActivity(new Intent(getContext(), CampHistoryNSMActivity.class).putExtra(AppConstants.EXTRA, true));
+                return;
+            }
             startActivity(new Intent(getContext(), CampHistoryZSMActivity
-
                     .class).putExtra(AppConstants.EXTRA, true));
         } else if (v.getId() == R.id.btn_notification) {
-
+            startActivity(new Intent(getContext(), NotificationsActivity.class));
         } else if (v.getId() == R.id.btn_leaderboard) {
-
+            startActivity(new Intent(getContext(), LeaderboardActivity.class));
         } else if (v.getId() == R.id.txt_logout) {
             startActivity(new Intent(getContext(), LoginActivity.class));
             finishAffinity();
