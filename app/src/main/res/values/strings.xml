@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">HYBC Wockhardt</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="ok">OK</string>
+    <string name="title_activity_drawer">DrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="home">HOME</string>
+    <string name="my_doctors">My Doctors</string>
+    <string name="camp_plan">Camp Plan</string>
+    <string name="camp_execution">Camp Execution</string>
+    <string name="notification">Notification</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="err_emp_id">Please enter your employee id</string>
+    <string name="err_password">Please enter password</string>
+    <string name="login_text">Enter Your Employee Id and Password to proceed</string>
+    <string name="hint_emp_id">Employee Id</string>
+    <string name="hint_password">Password</string>
+    <string name="designation">Designation</string>
+    <string name="login">Login</string>
+    <string name="msl_code">MSL Code</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="speciality">Speciality</string>
+    <string name="city">City</string>
+    <string name="submit_plan">Submit Plan</string>
+    <string name="submit">Submit</string>
+    <string name="my_camps">My Camps</string>
+    <string name="history">History</string>
+    <string name="create_plan">Create Plan</string>
+    <string name="execute_camp">Execute Camp</string>
+    <string name="new_patient">New Patient</string>
+    <string name="patient_name">Patient Name</string>
+    <string name="sex">Sex</string>
+    <string name="hint_mobile_number">Mobile Number</string>
+    <string name="dob">DOB</string>
+    <string name="height">Height: </string>
+    <string name="weight">Weight : </string>
+    <string name="abdominal_circumference">Abdominal circumferen</string>
+    <string name="questionnaire">Questionnaire</string>
+    <string name="result">Result</string>
+    <string name="my_team">My Team</string>
+    <string name="camp_approval">Camp Approval</string>
+    <string name="camp_history">Camp History</string>
+    <string name="view_drafts">View Drafts</string>
+    <string name="save_drafts">Save Draft</string>
+    <string name="drafts">Drafts</string>
+    <string name="check_internet_connection">Please check your internet connection and try again.</string>
+    <string name="something_wrong">Something went wrong</string>
+    <string name="no_data_avail">No data available</string>
+    <string name="generate_password">Generate Password</string>
+</resources>

@@ -1,0 +1,112 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kybcwockhardt">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".application.MyApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".MyDoctorsActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".SplashActivity"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@style/VisualTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".NotificationsActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".CampExecutionActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".CampExecutionClickActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".AddNewPatientActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".CampPlanActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".CreatePlanActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".DoctorDetailsActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".LeaderboardActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".RmMainActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".ZsmSmMainActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".CampHistoryZSMActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".MyTeamActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".ZsmTeamActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".CampHistoryDetailsActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".CampHistoryActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".MyCampsActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".SubmitQuestionnaireActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".QuestionnaireActivity"
+            android:screenOrientation="sensorPortrait" />
+
+        <activity
+            android:name=".PatientSurveyActivity"
+            android:screenOrientation="sensorPortrait" />
+
+        <activity
+            android:name=".AddDoctorActivity"
+            android:screenOrientation="sensorPortrait" />
+
+        <activity
+            android:name=".DraftsActivity"
+            android:screenOrientation="sensorPortrait" />
+
+
+        <service android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
+</manifest>
