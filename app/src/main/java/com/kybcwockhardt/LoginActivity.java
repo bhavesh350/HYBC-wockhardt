@@ -86,7 +86,7 @@ public class LoginActivity extends CustomActivity implements CustomActivity.Resp
 
             postCall(getContext(), AppConstants.BASE_URL + "login", p, "Logging you in...", 1);
         } else if (v.getId() == R.id.txt_generate_password) {
-            startActivity(new Intent(getContext(), GeneratePasswordActivity.class));
+            startActivity(new Intent(getContext(), EnterMobileActivity.class));
         }
     }
 

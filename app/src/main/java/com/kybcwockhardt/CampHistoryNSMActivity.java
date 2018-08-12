@@ -42,7 +42,13 @@ public class CampHistoryNSMActivity extends CustomActivity implements CustomActi
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setTitle(getString(R.string.camp_history));
+        getSupportActionBar().setTitle(getDesignationToShow(MyApp.getApplication().readUser().getData().getDesignation()));
+        try {
+            if (getIntent().getStringExtra("title").length() > 1) {
+                getSupportActionBar().setTitle(getIntent().getStringExtra("title"));
+            }
+        } catch (Exception e) {
+        }
         setupUiElements();
 
 
@@ -54,12 +60,18 @@ public class CampHistoryNSMActivity extends CustomActivity implements CustomActi
 
         select_month = findViewById(R.id.select_month);
         select_month.setText("JUNE, 2018");
-        year = 2018;
-        month = 6;
+        Calendar c = Calendar.getInstance();
+        int month = c.get(Calendar.MONTH);
+        month = month + 1;
+        int year = c.get(Calendar.YEAR);
+        select_month.setText(getMonth(month-1) + ", " + year);
         setTouchNClick(R.id.select_month);
         RequestParams p = new RequestParams();
         p.put("user_id", MyApp.getApplication().readUser().getData().getId());
         postCall(getContext(), BASE_URL + "my-team", p, "Loading team data...", 1);
+
+        this.month = month;
+        this.year = year;
     }
 
     public int year;
@@ -171,7 +183,18 @@ public class CampHistoryNSMActivity extends CustomActivity implements CustomActi
     public void onTimeOutRetry(int callNumber) {
 
     }
-
+    public String getDesignationToShow(String designation) {
+        if (designation.equals("NSM")) {
+            return "SM History";
+        } else if (designation.equals("SM")) {
+            return "ZSM History";
+        } else if (designation.equals("ZSM")) {
+            return "RM History";
+        } else if (designation.equals("RM")) {
+            return "TM History";
+        }
+        return designation;
+    }
     @Override
     public void onErrorReceived(String error) {
         MyApp.popMessage("Error", error, getContext());

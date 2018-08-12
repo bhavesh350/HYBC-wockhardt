@@ -87,7 +87,9 @@ public class CreatePlanActivity extends CustomActivity implements CustomActivity
             }
 
             AlertDialog.Builder b = new AlertDialog.Builder(getContext());
-            b.setTitle("Creating Camp?").setMessage("Are you sure that you want to create a camp with these details?")
+            b.setTitle("Creating Camp?").setMessage("Are you sure that you want to create a camp with following details?\n" +
+                    "\nDoctor\n" + txt_doctor_details.getText().toString() + "\n" +
+                    "\nOn Date : " + txt_date.getText().toString() + "\n\nExpected patients : " + edt_patient_count.getText().toString())
                     .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -147,8 +149,31 @@ public class CreatePlanActivity extends CustomActivity implements CustomActivity
 
             createCampData = outputFormatServer.format(date);
         } catch (ParseException e) {
+            date = null;
             e.printStackTrace();
         }
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        if (c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            //task related to sunday
+            AlertDialog.Builder b = new AlertDialog.Builder(getContext());
+            b.setTitle("Wockhardt Alert!").setMessage("Choosed date is sunday, are you sure to create a camp " +
+                    "on sunday?").setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            }).setNegativeButton("Change", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    dateDialog();
+                }
+            }).create().show();
+        } else {
+            //tasks related to other days
+        }
+
         return str;
     }
 
@@ -157,14 +182,18 @@ public class CreatePlanActivity extends CustomActivity implements CustomActivity
         super.onResume();
         Doctor.Data d = SingleInstance.getInstance().getSelectedDoctor();
         if (d != null) {
-            txt_doctor_details.setText(d.getName() + "\n" + d.getMobile());
+            txt_doctor_details.setText(d.getName() + "(" + d.getMsl_code() + ")" + "\n" + d.getMobile());
         }
     }
 
     private Context getContext() {
         return CreatePlanActivity.this;
     }
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SingleInstance.getInstance().setSelectedDoctor(null);
+    }
 
     @Override
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {

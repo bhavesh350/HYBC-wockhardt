@@ -35,8 +35,6 @@ public class GeneratePasswordActivity extends CustomActivity implements CustomAc
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.generate_password));
         setupUiElements();
-
-
     }
 
     private void setupUiElements() {

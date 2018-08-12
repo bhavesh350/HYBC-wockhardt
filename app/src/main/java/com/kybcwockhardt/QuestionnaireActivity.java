@@ -289,17 +289,21 @@ public class QuestionnaireActivity extends CustomActivity implements CustomActiv
     public void onJsonObjectResponseReceived(JSONObject o, int callNumber) {
         if (callNumber == 1 && o.optBoolean("status")) {
             Patient.Question q = new Gson().fromJson(o.optJSONObject("data").toString(), Patient.Question.class);
-            if (patientPosition != -1) {
-                Camp.Data data = SingleInstance.getInstance().getSelectedCamp();
-                data.getPatients().get(patientPosition).setQuestion(q);
-                SingleInstance.getInstance().setSelectedCamp(data);
-                SingleInstance.getInstance().setCurrentQuestionReport(q);
-                startActivity(new Intent(getContext(), SubmitQuestionnaireActivity.class));
-                finish();
-            } else {
-                SingleInstance.getInstance().setCurrentQuestionReport(q);
-                startActivity(new Intent(getContext(), SubmitQuestionnaireActivity.class));
-                finish();
+            try {
+                if (patientPosition != -1) {
+                    Camp.Data data = SingleInstance.getInstance().getSelectedCamp();
+                    data.getPatients().get(patientPosition).setQuestion(q);
+                    SingleInstance.getInstance().setSelectedCamp(data);
+                    SingleInstance.getInstance().setCurrentQuestionReport(q);
+                    startActivity(new Intent(getContext(), SubmitQuestionnaireActivity.class));
+                    finish();
+                } else {
+                    SingleInstance.getInstance().setCurrentQuestionReport(q);
+                    startActivity(new Intent(getContext(), SubmitQuestionnaireActivity.class));
+                    finish();
+                }
+            } catch (Exception e) {
+                MyApp.popMessage("Error", "Some error occurred while submit questions. Please try again.", getContext());
             }
         } else {
             MyApp.popMessage("Error", "Some error while submission, Please retry to submit questionnaire.", getContext());

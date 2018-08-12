@@ -49,8 +49,10 @@ public class ExecuteCampsAdapter extends RecyclerView.Adapter<ExecuteCampsAdapte
         holder.txt_date.setText(MyApp.parseDateFullMonth(d.getCamp_date().split(" ")[0]));
         if (d.getStatus() == 2 && MyApp.getTodayDate(System.currentTimeMillis()).equals(holder.txt_date.getText().toString())) {
             holder.card_view.setCardBackgroundColor(context.getResources().getColor(R.color.card_green));
-        } else {
-            holder.card_view.setCardBackgroundColor(context.getResources().getColor(R.color.card_gray));
+        } else if (d.getStatus() == 1) {
+            holder.card_view.setCardBackgroundColor(context.getResources().getColor(R.color.card_yellow));
+        }else if (d.getStatus() == 0) {
+            holder.card_view.setCardBackgroundColor(context.getResources().getColor(R.color.card_red));
         }
     }
 

@@ -59,10 +59,13 @@ public class CampHistoryTMActivity extends CustomActivity implements CustomActiv
         setTouchNClick(R.id.select_month);
 
         RequestParams p = new RequestParams();
-
-        p.put("month", 6);
-        p.put("year", 2018);
-
+        Calendar c = Calendar.getInstance();
+        int month = c.get(Calendar.MONTH);
+        month = month + 1;
+        int year = c.get(Calendar.YEAR);
+        p.put("month", month);
+        p.put("year", year);
+        select_month.setText(getMonth(month-1) + ", " + year);
         p.put("user_id", MyApp.getApplication().readUser().getData().getId());
         postCall(getContext(), BASE_URL + "camp-history-for-tm", p, "Loading...", 1);
 

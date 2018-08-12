@@ -49,7 +49,8 @@ public class CampHistoryRMDetailsAdapter extends RecyclerView.Adapter<CampHistor
         holder.txt_emp_id.setText("" + d.getMsl_code());
 
 
-        holder.txt_patients.setText("Total Patients\n" + d.getPatients().size());
+        holder.txt_patients.setText("Total Patients\n" + d.getPatients().size() + "\n" +
+                "Expected patients\n" + d.getPatient_count());
 //        holder.txt_camps.setText("Total Camps\n" + campList.size());
 //        TeamCampsAdapter adapter = new TeamCampsAdapter(context, campList);
 //        holder.rv_camp.setAdapter(adapter);

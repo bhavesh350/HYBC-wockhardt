@@ -49,7 +49,13 @@ public class CampHistoryZSMActivity extends CustomActivity implements CustomActi
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setTitle(getString(R.string.camp_history));
+        getSupportActionBar().setTitle(getDesignationToShow(MyApp.getApplication().readUser().getData().getDesignation()));
+        try {
+            if (getIntent().getStringExtra("title").length() > 1) {
+                getSupportActionBar().setTitle(getIntent().getStringExtra("title"));
+            }
+        } catch (Exception e) {
+        }
         setupUiElements();
     }
 
@@ -58,17 +64,25 @@ public class CampHistoryZSMActivity extends CustomActivity implements CustomActi
         rl_list.setLayoutManager(new LinearLayoutManager(getContext()));
 
         select_month = findViewById(R.id.select_month);
+
+        Calendar c = Calendar.getInstance();
+        int month = c.get(Calendar.MONTH);
+        month = month + 1;
+        int year = c.get(Calendar.YEAR);
+
+
+
         if (isNSM)
             select_month.setText(getIntent().getStringExtra("date"));
         else
-            select_month.setText("JUNE, 2018");
+            select_month.setText(getMonth(month-1) + ", " + year);
         setTouchNClick(R.id.select_month);
 
         RequestParams p = new RequestParams();
 
         if (getIntent().getIntExtra("year", 0) == 0) {
-            p.put("month", 6);
-            p.put("year", 2018);
+            p.put("month", month);
+            p.put("year", year);
         } else {
             p.put("month", getIntent().getIntExtra("month", 0));
             p.put("year", getIntent().getIntExtra("year", 0));
@@ -200,7 +214,18 @@ public class CampHistoryZSMActivity extends CustomActivity implements CustomActi
     public void onTimeOutRetry(int callNumber) {
 
     }
-
+    public String getDesignationToShow(String designation) {
+        if (designation.equals("NSM")) {
+            return "SM History";
+        } else if (designation.equals("SM")) {
+            return "ZSM History";
+        } else if (designation.equals("ZSM")) {
+            return "RM History";
+        } else if (designation.equals("RM")) {
+            return "TM History";
+        }
+        return designation;
+    }
     @Override
     public void onErrorReceived(String error) {
         MyApp.popMessage("Error", error, getContext());

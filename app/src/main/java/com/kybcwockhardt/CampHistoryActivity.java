@@ -41,6 +41,13 @@ public class CampHistoryActivity extends CustomActivity implements CustomActivit
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setTitle(getDesignationToShow(MyApp.getApplication().readUser().getData().getDesignation()));
+        try {
+            if (getIntent().getStringExtra("title").length() > 1) {
+                getSupportActionBar().setTitle(getIntent().getStringExtra("title"));
+            }
+        } catch (Exception e) {
+        }
         getSupportActionBar().setTitle(getString(R.string.camp_history));
 
         setupUiElements();
@@ -59,9 +66,17 @@ public class CampHistoryActivity extends CustomActivity implements CustomActivit
         rv_list.setLayoutManager(new LinearLayoutManager(getContext()));
 
         select_month = findViewById(R.id.select_month);
-        select_month.setText("June, 2018");
+        Calendar c = Calendar.getInstance();
+        int month = c.get(Calendar.MONTH);
+        month = month + 1;
+        int year = c.get(Calendar.YEAR);
+        p.put("month", month);
+        p.put("year", year);
+        select_month.setText(getMonth(month-1) + ", " + year);
         setTouchNClick(R.id.select_month);
 
+        this.month = month;
+        this.year = year;
     }
 
     @Override
@@ -185,5 +200,18 @@ public class CampHistoryActivity extends CustomActivity implements CustomActivit
         p.put("month", month);
         p.put("year", year);
         postCall(getContext(), BASE_URL + "camp-history-rm", p, "Loading...", 2);
+    }
+
+    public String getDesignationToShow(String designation) {
+        if (designation.equals("NSM")) {
+            return "SM History";
+        } else if (designation.equals("SM")) {
+            return "ZSM History";
+        } else if (designation.equals("ZSM")) {
+            return "RM History";
+        } else if (designation.equals("RM")) {
+            return "TM History";
+        }
+        return designation;
     }
 }

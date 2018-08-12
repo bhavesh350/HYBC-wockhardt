@@ -49,7 +49,8 @@ public class CampHistoryZSMAdapter extends RecyclerView.Adapter<CampHistoryZSMAd
         holder.txt_name.setText(d.getName());
 
         if (d.getDesignation().equals("ZSM")) {
-            holder.txt_patients.setText("Total Patients\n" + d.getZsm_patient_count_orignal());
+            holder.txt_patients.setText("Total Patients\n" + d.getZsm_patient_count_orignal()+"\n"+
+                    "Expected Patients\n" + d.getZsm_patient_count_expected());
             holder.txt_camps.setText("Total Camps\n" + d.getZsm_camp_count());
             if (d.getZsm_camp_count() == 0) {
                 holder.card_view.setCardBackgroundColor(context.getResources().getColor(R.color.card_red));
@@ -57,7 +58,8 @@ public class CampHistoryZSMAdapter extends RecyclerView.Adapter<CampHistoryZSMAd
                 holder.card_view.setCardBackgroundColor(context.getResources().getColor(R.color.card_green));
             }
         } else {
-            holder.txt_patients.setText("Total Patients\n" + d.getRm_patient_count_orignal());
+            holder.txt_patients.setText("Total Patients\n" + d.getRm_patient_count_orignal()+"\n"+
+                    "Expected Patients\n" + d.getRm_patient_count_expected());
             holder.txt_camps.setText("Total Camps\n" + d.getRm_camp_count());
             if (d.getRm_camp_count() == 0) {
                 holder.card_view.setCardBackgroundColor(context.getResources().getColor(R.color.card_red));

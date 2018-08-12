@@ -22,6 +22,9 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Calendar;
+import java.util.List;
+
 import static com.kybcwockhardt.application.AppConstants.BASE_URL;
 
 public class MyCampsActivity extends CustomActivity implements CustomActivity.ResponseCallback {
@@ -54,7 +57,13 @@ public class MyCampsActivity extends CustomActivity implements CustomActivity.Re
             p.put("user_id", getIntent().getIntExtra("myId", 0));
         else
             p.put("user_id", MyApp.getApplication().readUser().getData().getId());
-        postCall(getContext(), BASE_URL + "my-camp", p, "Fetching camp data...", 1);
+        Calendar c = Calendar.getInstance();
+        int month = c.get(Calendar.MONTH);
+        month = month + 1;
+        int year = c.get(Calendar.YEAR);
+        p.put("month", month);
+        p.put("year", year);
+        postCall(getContext(), BASE_URL + "camp-history-for-tm", p, "Loading...", 1);
     }
 
     private void setupUiElements() {
@@ -118,7 +127,13 @@ public class MyCampsActivity extends CustomActivity implements CustomActivity.Re
             if (c.getData().size() == 0) {
                 MyApp.popFinishableMessage("Message", "No camp created yet", MyCampsActivity.this);
             } else {
-                adapter = new MyCampsAdapter(getContext(), c.getData());
+                List<Camp.Data> campData = c.getData();
+                for (int i = 0; i < c.getData().size(); i++) {
+                    if (c.getData().get(i).getStatus() == 2) {
+                        campData.remove(i);
+                    }
+                }
+                adapter = new MyCampsAdapter(getContext(), campData);
                 rv_list.setAdapter(adapter);
             }
         } else if (callNumber == 2 && o.optBoolean("status")) {

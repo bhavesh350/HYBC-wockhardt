@@ -56,7 +56,8 @@ public class CampHistoryTMAdapter extends RecyclerView.Adapter<CampHistoryTMAdap
             holder.card_view.setCardBackgroundColor(context.getResources().getColor(R.color.card_green));
             holder.txt_approval.setText("Approved");
         }
-        holder.txt_patient_screened.setText("Patients screened : " + d.getPatients().size());
+        holder.txt_patient_screened.setText("Patients screened : " + d.getPatients().size() + "\nExpected patients : "
+                + d.getPatient_count());
         holder.txt_date.setText(MyApp.parseDateSortDate(d.getCamp_date()));
 
 

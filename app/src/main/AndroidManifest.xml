@@ -106,6 +106,12 @@
             android:name=".DraftsActivity"
             android:screenOrientation="sensorPortrait" />
 
+        <activity
+            android:name=".VerifyMobileActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".EnterMobileActivity"
+            android:screenOrientation="sensorPortrait" />
 
         <activity
             android:name=".CampHistoryDetailsUsersActivity"
